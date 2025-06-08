@@ -66,6 +66,12 @@ For testing only
 
 ## Console Commands
 
+- `matchup_kick_all` Kick all players
+- `matchup_map` Set match map
+- `matchup_team_size` Set match team size
+- `matchup_knife` Set match knife round status
+- `matchup_start` Start match with current config
+- `matchup_reset` Reset MatchUp
 - `matchup_reconfigure` This command lets MatchUp reload the maps and settings. This is only allowed during the setup
   phase.
 
