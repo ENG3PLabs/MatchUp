@@ -134,6 +134,11 @@ public class MatchUp : BasePlugin
     [GameEventHandler]
     public HookResult OnPlayerConnect(EventPlayerConnectFull @event, GameEventInfo info)
     {
+        MatchConfig.Settings.TryGetValue("welcomeMessage", out var welcomeMessage);
+        if (!string.IsNullOrEmpty(welcomeMessage))
+        {
+            @event.Userid?.PrintToChat($" {ChatColors.Magenta}{welcomeMessage}");
+        }
         StateMachine.GetCurrentState().OnPlayerConnect(@event);
         return HookResult.Continue;
     }
