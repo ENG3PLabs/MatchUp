@@ -13,8 +13,8 @@ MatchUp is CS2 plugin for creating and running matches directly from the server
 ## Features
 
 - Easy creation of a match directly from the server
-- Knife round (Can be toggled in setup phase)
-
+- Knife round (Can be toggled in the setup phase)
+- Welcome message when a user logs in
 
 ## Commands
 
@@ -22,7 +22,7 @@ Commands can be triggered with either ! or .
 
 ### Setup phase
 
-- `!map` Shows a selection menu for map in chat
+- `!map` Shows a selection menu for the map in chat
 - `!config` Print current config to chat
 - `!start` Complete setup and transition to ready status state
 - `!help` Print setup phase command usages
@@ -53,7 +53,7 @@ For testing only
 
 - `!pause` Pause match
 - `!unpause` Unpause match
-- `!backup` Can be used in pause state to backup rounds
+- `!backup` Can be used in pause state to back up rounds
 
 For testing only
 
@@ -77,7 +77,7 @@ For testing only
 
 ## Configuration
 
-All the Configuration files can be found in `csgo/cfg/MatchUp`
+All the Configuration files can be found in `csgo/cfg/MatchUp`.
 
 ## Credits and thanks!
 
