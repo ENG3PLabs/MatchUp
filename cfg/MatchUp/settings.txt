@@ -1,1 +1,5 @@
 ﻿; These settings can be used to change the behavior of MatchUp
+
+; welcomeMessage - displays a welcome message to players that just joined the server.
+; Default is no message.
+;welcomeMessage=Welcome to the server!
