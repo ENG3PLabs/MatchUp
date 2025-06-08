@@ -63,6 +63,12 @@ public class MatchUp : BasePlugin
         MatchConfig.StartMatch();
     }
 
+    [ConsoleCommand("matchup_reset", "Reset MatchUp")]
+    public void OnReset(CCSPlayerController? player, CommandInfo command)
+    {
+        ResetMatch();
+    }
+
     [ConsoleCommand("matchup_reconfigure", "Reloads the MatchUp configs")]
     public void OnReConfigure(CCSPlayerController? player, CommandInfo command)
     {
@@ -97,7 +103,7 @@ public class MatchUp : BasePlugin
 
         if (command == "reset")
         {
-            OnReset();
+            ResetMatch();
             return HookResult.Continue;
         }
 
@@ -146,7 +152,7 @@ public class MatchUp : BasePlugin
         return HookResult.Continue;
     }
 
-    private static void OnReset()
+    private static void ResetMatch()
     {
         Server.PrintToChatAll($" {ChatColors.Green}Resetting!!!");
 
