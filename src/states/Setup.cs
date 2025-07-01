@@ -63,11 +63,11 @@ public class SetupState : BaseState
         }
 
         player.PrintToChat($" {ChatColors.Yellow}Commands:");
-        player.PrintToChat($" {ChatColors.Green}!map {ChatColors.Default} select map for match");
-        player.PrintToChat($" {ChatColors.Green}!start {ChatColors.Default} start match with current config");
-        player.PrintToChat($" {ChatColors.Green}!config {ChatColors.Default} print current match config");
-        player.PrintToChat($" {ChatColors.Green}!team_size <number> {ChatColors.Default} set team size for match");
-        player.PrintToChat($" {ChatColors.Green}!knife <boolean> {ChatColors.Default} set knife round for match");
+        player.PrintToChat($" {ChatColors.Green}!map {ChatColors.Default}select map for match");
+        player.PrintToChat($" {ChatColors.Green}!start {ChatColors.Default}start match with current config");
+        player.PrintToChat($" {ChatColors.Green}!config {ChatColors.Default}print current match config");
+        player.PrintToChat($" {ChatColors.Green}!team_size <number> {ChatColors.Default}set team size for match");
+        player.PrintToChat($" {ChatColors.Green}!knife <boolean> {ChatColors.Default}set knife round for match");
     }
 
     private static void OnTeamSize(int userid, string[]? args)
@@ -75,7 +75,7 @@ public class SetupState : BaseState
         var player = Utilities.GetPlayerFromUserid(userid);
         if (player != null && (args == null || !MatchConfig.SetTeamSize(args[0], player)))
         {
-            player.PrintToChat(" Command usage: !team_size <number>");
+            player.PrintToChat("Command usage: !team_size <number>");
         }
     }
 
@@ -84,7 +84,7 @@ public class SetupState : BaseState
         var player = Utilities.GetPlayerFromUserid(userid);
         if (player != null && (args == null || !MatchConfig.SetKnife(args[0], player)))
         {
-            player.PrintToChat(" Command usage: !knife <boolean>");
+            player.PrintToChat("Command usage: !knife <boolean>");
         }
     }
 }

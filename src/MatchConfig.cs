@@ -84,26 +84,21 @@ public static class MatchConfig
 
     public static void Print(int? userid = null)
     {
-        Action<string> printMessage;
-        if (!userid.HasValue)
+        // try to find the player that initiated the call if userid has a value
+        var player = userid.HasValue ? Utilities.GetPlayerFromUserid(userid.Value) : null;
+        if (userid.HasValue && player == null)
         {
-            printMessage = Server.PrintToChatAll;
+            // if the player was not found despite userid having a value, we do not continue
+            // TODO: get player as an attribute instead of userid and remove this logic since MatchUp.OnPlayerChat already validates that the userid belongs to a valid player
+            return;
         }
-        else
-        {
-            var player = Utilities.GetPlayerFromUserid(userid.Value);
-            if (player == null)
-            {
-                return;
-            }
-
-            printMessage = player.PrintToChat;
-        }
-
-        printMessage($" {ChatColors.Green} Current config");
-        printMessage($" {ChatColors.Grey} Map: {ChatColors.Gold} {_map}");
-        printMessage($" {ChatColors.Grey} Players per team: {ChatColors.Gold} {PlayersPerTeam}");
-        printMessage($" {ChatColors.Grey} Knife round enabled: {ChatColors.Gold} {KnifeRound}");
+        // define where to send the message to: player is not null -> player's chat; else all chat
+        Action<string> printMessage = player != null ? player.PrintToChat : Server.PrintToChatAll;
+        // send the config messages
+        printMessage($" {ChatColors.Green}Current config");
+        printMessage($" {ChatColors.Grey}Map: {ChatColors.Gold}{_map}");
+        printMessage($" {ChatColors.Grey}Players per team: {ChatColors.Gold}{PlayersPerTeam}");
+        printMessage($" {ChatColors.Grey}Knife round enabled: {ChatColors.Gold}{KnifeRound}");
     }
 
     public static bool SetMap(string? map, CCSPlayerController? player = null)
@@ -116,7 +111,7 @@ public static class MatchConfig
         Console.WriteLine($"Setting map to {map}");
         if (player != null)
         {
-            player.PrintToChat($" Setting map to: {map}");
+            player.PrintToChat($"Setting map to: {map}");
         }
 
         _map = map;
@@ -134,7 +129,7 @@ public static class MatchConfig
         Console.WriteLine($"Setting team size to {parsedTeamSize}");
         if (player != null)
         {
-            player.PrintToChat($" Setting team size to: {teamSize}");
+            player.PrintToChat($"Setting team size to: {teamSize}");
         }
 
         PlayersPerTeam = parsedTeamSize;
@@ -152,7 +147,7 @@ public static class MatchConfig
         Console.WriteLine($"Setting knife round to: {parsedKnifeRound}");
         if (player != null)
         {
-            player.PrintToChat($" Setting knife round to: {parsedKnifeRound}");
+            player.PrintToChat($"Setting knife round to: {parsedKnifeRound}");
         }
 
         KnifeRound = parsedKnifeRound;

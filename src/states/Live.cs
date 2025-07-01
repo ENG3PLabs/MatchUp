@@ -81,7 +81,7 @@ public class LiveState : BaseState
         var paused = _tPause || _ctPause;
         if (paused)
         {
-            player.PrintToChat($" {ChatColors.Green} Game is already paused!");
+            player.PrintToChat($" {ChatColors.Green}Game is already paused!");
             return;
         }
 
@@ -91,10 +91,10 @@ public class LiveState : BaseState
         switch (player.TeamNum)
         {
             case (byte)CsTeam.Terrorist:
-                Server.PrintToChatAll($" {ChatColors.Green} Terrorists have paused the game!");
+                Server.PrintToChatAll($" {ChatColors.Green}Terrorists have paused the game!");
                 break;
             case (byte)CsTeam.CounterTerrorist:
-                Server.PrintToChatAll($" {ChatColors.Green} Counter-Terrorists have paused the game!");
+                Server.PrintToChatAll($" {ChatColors.Green}Counter-Terrorists have paused the game!");
                 break;
         }
 
@@ -112,18 +112,18 @@ public class LiveState : BaseState
         switch (player.TeamNum)
         {
             case (byte)CsTeam.Terrorist when !_tPause:
-                player.PrintToChat($" {ChatColors.Green} Your team already unpaused!");
+                player.PrintToChat($" {ChatColors.Green}Your team already unpaused!");
                 break;
             case (byte)CsTeam.Terrorist:
                 _tPause = false;
-                Server.PrintToChatAll($" {ChatColors.Green} Terrorists have unpaused the game!");
+                Server.PrintToChatAll($" {ChatColors.Green}Terrorists have unpaused the game!");
                 break;
             case (byte)CsTeam.CounterTerrorist when !_ctPause:
-                player.PrintToChat($" {ChatColors.Green} Your team already unpaused!");
+                player.PrintToChat($" {ChatColors.Green}Your team already unpaused!");
                 break;
             case (byte)CsTeam.CounterTerrorist:
                 _ctPause = false;
-                Server.PrintToChatAll($" {ChatColors.Green} Counter-Terrorists have unpaused the game!");
+                Server.PrintToChatAll($" {ChatColors.Green}Counter-Terrorists have unpaused the game!");
                 break;
         }
         
@@ -166,7 +166,7 @@ public class LiveState : BaseState
 
         var backupSelection = new ChatMenu("Backup selection");
         var lastRound = int.Parse(string.Concat(backupFileName.SkipLast(4).TakeLast(2)));
-        player.PrintToChat($" Last backup file {lastRound}");
+        player.PrintToChat($"Last backup file {lastRound}");
         for (var i = 0; i <= lastRound; i++)
         {
             var roundNumberString = i < 10 ? $"0{i}" : $"{i}";
@@ -185,7 +185,7 @@ public class LiveState : BaseState
 
         var round = selection.Split(" ")[1];
         var backupFileName = string.Concat(_lastRoundPlayedBackupFile.SkipLast(6)) + $"{round}.txt";
-        player.PrintToChat($" Restoring previous state using backup file {backupFileName}");
+        player.PrintToChat($"Restoring previous state using backup file {backupFileName}");
 
         Server.ExecuteCommand($"mp_backup_restore_load_file {backupFileName}");
     }
